@@ -149,4 +149,19 @@ export function download(url, params, filename, config) {
   })
 }
 
+/**
+ * 封装的请求方法
+ * @param {Object} options 请求配置
+ * @param {Function} onUploadProgress 上传进度回调
+ */
+export function requestV1(options, onUploadProgress) {
+  if (options.method === 'post' && options.data instanceof FormData) {
+    return service({
+      ...options,
+      onUploadProgress,
+    });
+  }
+  return service(options);
+}
+
 export default service

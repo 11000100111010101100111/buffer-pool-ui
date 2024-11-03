@@ -22,9 +22,37 @@
   overflow: hidden;
 }
 
-
 .icon:before {
   margin-right: 5px;
+}
+
+
+.icon-zhuanfa:before {
+  content: "\e6c4";
+}
+
+.icon-sousuo:before {
+  content: "\e6ac";
+}
+
+.icon-shezhi:before {
+  content: "\e604";
+}
+
+.icon-pinglun:before {
+  content: "\e612";
+}
+
+.icon-xihuan:before {
+  content: "\e818";
+}
+
+.icon-shoucang:before {
+  content: "\e631";
+}
+
+.icon-gengduo:before {
+  content: "\e62d";
 }
 
 .icon-duanshipin:before {

@@ -12,7 +12,8 @@
       <template slot="title">猜你喜欢</template>
       <el-submenu index="2-1">
         <template slot="title" class="iconfont icon-kaifagongju">开发工具</template>
-        <el-menu-item index="2-1-1" class="iconfont el-icon-map-location" @click="handleBaiDuAPIMap">实时天气地图</el-menu-item>
+        <el-menu-item index="2-1-1" class="iconfont el-icon-map-location" @click="handleBaiDuAPIMap">实时天气地图
+        </el-menu-item>
         <el-menu-item index="2-1-2" class="iconfont icon-json" @click="handleTranslate">翻译</el-menu-item>
         <el-menu-item index="2-1-1" disabled class="iconfont icon-api">Open API</el-menu-item>
         <el-menu-item index="2-1-2" disabled class="iconfont icon-webhook">WebHook</el-menu-item>
@@ -40,29 +41,12 @@
     </el-submenu>
     <el-menu-item index="3" class="iconfont icon-blog1" @click="blog">博客</el-menu-item>
     <el-menu-item index="4" class="login-button">
-      <div v-if="isLoggedIn" class="right-menu">
-        <el-dropdown class="avatar-container right-menu-item hover-effect" trigger="click">
-          <div class="avatar-wrapper">
-            <img :src="userAvatar" class="user-avatar">
-            <i class="el-icon-caret-bottom"/>
-          </div>
-          <el-dropdown-menu slot="dropdown">
-            <router-link to="/user">
-              <el-dropdown-item>个人信息</el-dropdown-item>
-            </router-link>
-            <el-dropdown-item divided @click.native="logout">
-              <span>退出登录</span>
-            </el-dropdown-item>
-          </el-dropdown-menu>
-        </el-dropdown>
-      </div>
-      <div v-else @click="handleLogin" class="login-text login-text-hover">登</div>
+      <user-login-info/>
     </el-menu-item>
   </el-menu>
 </template>
 
 <script>
-  import {getToken} from '@/utils/auth';
   import {mapGetters} from 'vuex'
   import Breadcrumb from '@/components/Breadcrumb'
   import TopNav from '@/components/TopNav'
@@ -72,12 +56,12 @@
   import Search from '@/components/HeaderSearch'
   import KitGit from '@/components/Kit/Git'
   import KitDoc from '@/components/Kit/Doc'
-  import {getUserProfile} from '@/api/system/user';
-  import store from '../../store'
+  import UserLoginInfo from "./UserLoginInfo";
 
   export default {
     name: "Head",
     components: {
+      UserLoginInfo,
       Breadcrumb,
       TopNav,
       Hamburger,
@@ -130,32 +114,12 @@
         activeIndex2: '1',
 
         activeMenu: '1',
-        isLoggedIn: false, // 用户登录状态
-        userAvatar: '', // 用户头像地址
-        userName: '', // 用户名
-
-        headers: {Authorization: null},
-
-        loginTo: '/login'
       }
     },
     mounted() {
-      this.checkLoginStatus();
+
     },
     methods: {
-      async logout() {
-        this.$confirm('确定注销并退出系统吗？', '提示', {
-          confirmButtonText: '确定',
-          cancelButtonText: '取消',
-          type: 'warning'
-        }).then(() => {
-          this.$store.dispatch('LogOut').then(() => {
-            location.href = '/index';
-          })
-        }).catch(() => {
-        });
-      },
-
       blog() {
         window.open('/blog', '_blank');
       },
@@ -176,36 +140,7 @@
       },
       handleSelect(key, keyPath) {
         console.log(key, keyPath);
-      },
-      handleLogin() {
-        window.location.href = this.loginTo; // 假设登录页面为 /login
-      },
-      checkLoginStatus() {
-        // 检查用户是否登录，可以通过检查 token 或调用后端 API
-        const token = store.getters.token;// 示例中从 localStorage 获取 token
-        if (token) {
-          // 假设存在 token，则用户已登录，获取用户信息
-          this.headers.Authorization = "Bearer " + token;
-          this.isLoggedIn = true;
-          this.getUserInfo();
-        } else {
-          this.isLoggedIn = false;
-        }
-      },
-      getUserInfo() {
-        // 调用后端 API 获取用户信息
-        // 示例中使用了 async/await 和 fetch API，你可以根据你的项目配置使用 axios 或其他请求库
-        if (this.headers.Authorization) {
-          getUserProfile().then(response => {
-            if (200 === response.code) {
-              this.loginTo = '/user';
-              this.userAvatar = response.data.avatar;
-              this.userAvatar = (this.userAvatar == "" || this.userAvatar == null) ? require("@/assets/images/profile.jpg") : process.env.VUE_APP_BASE_API + this.userAvatar;
-              this.userName = response.data.nickName;
-            }
-          });
-        }
-      },
+      }
     }
   }
 </script>
@@ -233,135 +168,19 @@
     align-items: center;
     justify-content: center;
     border-radius: 10px;
-    /*border-radius: 50%; !* 确保头像是圆形 *!*/
-
+    border: 0;
   }
 
-  .login-button > .avatar-wrapper,
-  .login-button > .login-text {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  .login-button:focus {
+    border: 0;
   }
 
-  /*.login-button:hover {*/
-  /*  background: #303133;*/
-  /*}*/
-
-  .avatar-wrapper {
-    border-radius: 10px;
-    /*border-radius: 50%; !* 确保头像是圆形 *!*/
-    overflow: hidden;
-    background: #303133;
-    transition: transform 0.5s ease;
+  .login-button:checked {
+    border: 0;
   }
 
-  .avatar {
-    width: 100%; /* 头像填充整个容器 */
-    height: 100%;
-    object-fit: cover;
+  .login-button:active {
+    border: 0;
   }
 
-  .login-text {
-    border-radius: 10px;
-    /*border-radius: 50%; !* 使登录按钮的文字容器也是圆形 *!*/
-    background-color: #FFD700;
-    color: rgb(84, 92, 100);
-    font-weight: bold;
-    cursor: pointer;
-    text-align: center;
-    font-size: 20px;
-    line-height: 1; /* 确保文字居中 */
-    transition: transform 0.5s ease;
-  }
-
-  /*.login-text-hover:hover {*/
-  /*  font-weight: bolder;*/
-  /*  transform: scale(1.05);*/
-  /*  box-shadow: 0 0 10px 0 #FFD700;*/
-  /*}*/
-
-  .login-button {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  /*.avatar-wrapper {*/
-  /*  width: 40px;*/
-  /*  height: 40px;*/
-  /*  border-radius: 50%; !* 圆形样式 *!*/
-  /*  overflow: hidden;*/
-  /*  background-color: #f2f2f2;*/
-  /*  display: flex;*/
-  /*  align-items: center;*/
-  /*  justify-content: center;*/
-  /*}*/
-
-  /*.avatar {*/
-  /*  width: 100%;*/
-  /*  height: 100%;*/
-  /*  object-fit: cover;*/
-  /*}*/
-  /* 将 el-header 固定在顶部 */
-  /*.el-header{*/
-  /*  position: fixed;*/
-  /*  top: 0;*/
-  /*  left: 0;*/
-  /*  width: 100%;*/
-  /*  z-index: 1000; !* 确保 header 处于最上层 *!*/
-  /*}*/
-
-  .right-menu {
-    float: right;
-    height: 100%;
-    line-height: 50px;
-
-    &:focus {
-      outline: none;
-    }
-
-    .right-menu-item {
-      display: inline-block;
-      /*padding: 0 8px;*/
-      height: 100%;
-      font-size: 18px;
-      color: #5a5e66;
-      vertical-align: text-bottom;
-
-      &.hover-effect {
-        cursor: pointer;
-        transition: background .3s;
-
-        &:hover {
-          background: rgba(0, 0, 0, .025)
-        }
-      }
-    }
-
-    .avatar-container {
-      /*margin-right: 30px;*/
-
-      .avatar-wrapper {
-        position: relative;
-
-        .user-avatar {
-          cursor: pointer;
-          width: 100%;
-          height: 100%;
-          border-radius: 10px;
-        }
-
-        .el-icon-caret-bottom {
-          cursor: pointer;
-          position: absolute;
-          right: -20px;
-          top: 25px;
-          font-size: 12px;
-        }
-      }
-    }
-  }
 </style>

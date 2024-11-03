@@ -1,6 +1,6 @@
 ﻿<template>
   <el-form ref="loginForm" :model="loginForm" :rules="loginRules" class="login-form">
-    <h3 class="title unable-select-element">哈喽！你来啦？快用你的账号密码登陆</h3>
+    <h3 class="title unable-select-element">Buffer'Pool</h3>
     <el-form-item prop="username">
       <el-input
         v-model="loginForm.username"
@@ -68,8 +68,8 @@
       return {
         codeUrl: "",
         loginForm: {
-          username: "admin",
-          password: "admin123",
+          username: "",
+          password: "",
           rememberMe: false,
           code: "",
           uuid: "",

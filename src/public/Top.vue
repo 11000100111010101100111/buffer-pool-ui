@@ -21,16 +21,19 @@
       duration: {
         type: Number,
         default: 3000 // 默认持续时间为5000毫秒
+      },
+      position: {
+        type: Object,
+        default: {
+          x: window.innerWidth - 240, // 默认位置（右侧）
+          y: window.innerHeight - 100 // 距离顶部20px
+        }
       }
     },
     data() {
       return {
         visible: true, // 控制告示的显示与隐藏
         isLeft: false, // 控制告示是否靠左
-        position: {
-          x: window.innerWidth - 240, // 默认位置（右侧）
-          y: window.innerHeight - 100 // 距离顶部20px
-        },
         times: this.duration / 1000,
         isDragging: false, // 控制拖动状态
         dragOffset: {x: 0, y: 0}, // 存储拖动的偏移量

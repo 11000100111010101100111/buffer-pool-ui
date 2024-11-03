@@ -63,7 +63,19 @@ export function getCodeImg() {
 // 获取邮箱验证码
 export function getEmailCode(email) {
   return request({
-    url: '/emailCode?email=' + email,
+    url: '/valid-code/emailCode?email=' + email,
+    headers: {
+      isToken: false
+    },
+    method: 'get',
+    timeout: 20000
+  })
+}
+
+// 获取手机验证码
+export function getPhoneCode(phone) {
+  return request({
+    url: '/valid-code/phone-code?phone=' + phone,
     headers: {
       isToken: false
     },

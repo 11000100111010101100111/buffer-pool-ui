@@ -115,7 +115,7 @@
           window.open('/lai-kan', '_blank');
         },
         toGithub() {
-          window.open('https://github.com/11000100111010101100111/SmallQuestionNotes', '_blank');
+          window.open('https://github.com/11000100111010101100111/buffer-pool-service', '_blank');
         },
         handleBaiDuAPIMap() {
           window.location.href = '/weather-baidu';

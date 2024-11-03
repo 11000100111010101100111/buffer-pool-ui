@@ -66,8 +66,8 @@ export const constantRoutes = [
   },
   {
     path: '',
-    redirect: '/home',
-    component: () => import('@/public/index'),
+    redirect: '/lai-kan',
+    component: () => import('@/public/video/index'),
     hidden: true,
     meta: {requiresAuth: false}
   },
@@ -134,6 +134,12 @@ export const constantRoutes = [
   {
     path: '/lai-kan',
     component: () => import('@/public/video/index'),
+    hidden: true,
+    meta: {requiresAuth: false}
+  },
+  {
+    path: '/lai-kan/video/publish',
+    component: () => import('@/public/video/publish/publish'),
     hidden: true,
     meta: {requiresAuth: false}
   },

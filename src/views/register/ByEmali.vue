@@ -1,6 +1,6 @@
 ﻿<template>
   <el-form ref="loginForm" :model="loginForm" :rules="loginRules" class="login-form">
-    <h3 class="title unable-select-element">哈喽！你来啦？快用你的邮箱登陆</h3>
+    <h3 class="title unable-select-element">邮箱登陆</h3>
     <el-form-item prop="username">
       <el-input
         v-model="loginForm.username"
@@ -8,7 +8,7 @@
         auto-complete="off"
         placeholder="您的电子邮箱，例如：xxx@xxx.xxx"
       >
-        <svg-icon slot="prefix" icon-class="user" class="el-input__icon input-icon"/>
+        <svg-icon slot="prefix" icon-class="email" class="el-input__icon input-icon"/>
       </el-input>
     </el-form-item>
     <el-form-item prop="code" v-if="captchaEnabled">
@@ -21,7 +21,7 @@
       >
       </el-input>
       <div class="login-code">
-        <el-button @click="getCode" type="primary">发送验证码</el-button>
+        <el-button @click="getCode" type="primary" :loading="sending">{{sendMsg}}</el-button>
       </div>
     </el-form-item>
     <el-form-item style="width:100%;">
@@ -73,6 +73,8 @@
           code: [{required: true, trigger: "change", message: "请输入验证码"}]
         },
         loading: false,
+        sending: false,
+        sendMsg: '立即发送',
         // 验证码开关
         captchaEnabled: true,
         // 注册开关
@@ -93,14 +95,32 @@
     },
     methods: {
       getCode() {
+        this.sending = true;
+        this.sendMsg = '发送中';
         getEmailCode(this.loginForm.username).then(res => {
           this.captchaEnabled = res.captchaEnabled === undefined ? true : res.captchaEnabled;
           if (res.code === 200) {
             this.$message.success("验证码发送成功");
             this.registerForm.uuid = res.uuid;
+
+            let counts = 60;
+            const timer = setInterval(() => {
+              this.sendMsg = counts + '秒';
+              counts = counts - 1;
+            }, 1000);
+            setTimeout(() => {
+              this.sending = false;
+              clearInterval(timer);
+              this.sendMsg = '立即发送';
+            }, 60000).bind(this);
           } else {
+            this.sending = false;
+            this.sendMsg = '立即发送';
             this.$message.warning("验证码发送失败，请重试");
           }
+        }).catch(e => {
+          this.sending = false;
+          this.sendMsg = '立即发送';
         });
       },
       getCookie() {

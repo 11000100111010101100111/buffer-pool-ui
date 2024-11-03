@@ -4,6 +4,8 @@
             :placeholder="placeholder"
             @input="sendValue"
             :disabled="disabled"
+            @focus="focusInput"
+            @blur="blurInput"
             v-model="inputValue"/>
 </template>
 
@@ -41,6 +43,12 @@
             if (event.key === 'Enter') {
               this.$emit('enter-pressed', this.inputValue);
             }
+          },
+          focusInput() {
+            this.$emit('focus');
+          },
+          blurInput() {
+            this.$emit('blur');
           }
         },
       mounted() {

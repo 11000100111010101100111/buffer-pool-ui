@@ -1,11 +1,12 @@
 <template>
   <div class="login">
     <ByDefault v-show="'default' === this.loginType" @login-type="readLoginType"/>
+    <ByPhone v-show="'phone' === this.loginType" @login-type="readLoginType"/>
+<!--    <ByCSDN v-show="'csdn' === this.loginType" @login-type="readLoginType"/>-->
     <ByEmali v-show="'email' === this.loginType" @login-type="readLoginType"/>
-    <ByCSDN v-show="'csdn' === this.loginType" @login-type="readLoginType"/>
-    <ByGoogle v-show="'google' === this.loginType" @login-type="readLoginType"/>
+<!--    <ByGoogle v-show="'google' === this.loginType" @login-type="readLoginType"/>-->
     <ByGitHub v-show="'github' === this.loginType" @login-type="readLoginType"/>
-    <ByWeChat v-show="'wechat' === this.loginType" @login-type="readLoginType"/>
+<!--    <ByWeChat v-show="'wechat' === this.loginType" @login-type="readLoginType"/>-->
     <!--  底部  -->
     <div class="el-login-footer unable-select-element">
       <span>Copyright © 2024.8-* seeuagain.vip All Rights Reserved</span>
@@ -21,13 +22,14 @@
   import ByGoogle from "./register/ByGoogle";
   import ByWeChat from "./register/ByWeChat";
   import Cookies from "js-cookie";
+  import ByPhone from "./register/ByPhone";
 
   export default {
     name: "Login",
-    components: {ByWeChat, ByGoogle, ByGitHub, ByCSDN, ByEmali, ByDefault},
+    components: {ByPhone, ByWeChat, ByGoogle, ByGitHub, ByCSDN, ByEmali, ByDefault},
     data() {
       return {
-        supported: ['default', 'email'],
+        supported: ['default', 'phone', 'email'],
         loginType: 'default'
       };
     },
@@ -62,7 +64,7 @@
     justify-content: center;
     align-items: center;
     height: 100%;
-    background-image: url("../assets/images/login-img.png");
+    background-color: var(--bottomColor);
     background-size: cover;
   }
 

@@ -20,6 +20,36 @@
       /*background: linear-gradient(0deg, #25b09b, #ffffff, #25b09b); !* 线性渐变色 *!*/
     }
 
+    ul {
+      display: block;
+      list-style-type: disc;
+      margin-block-start: 0;
+      margin-block-end: 0;
+      margin-inline-start: 0px;
+      margin-inline-end: 0px;
+      padding-inline-start: 0px;
+      unicode-bidi: isolate;
+    }
+
+    * {
+      -webkit-tap-highlight-color: transparent;
+      outline: none;
+    }
+
+    ::-webkit-scrollbar {
+      width: 0;
+      height: 0;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background-color: #c0c0c0;
+      border-radius: 3px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background-color: #f1f1f1;
+    }
+
     .unable-select-element {
       user-select: none;
     }
@@ -204,7 +234,7 @@
 <div id="app">
   <div id="loader-wrapper">
     <div id="loader"></div>
-<!--    <div class="load_title">马上就好</div>-->
+    <!--    <div class="load_title">马上就好</div>-->
   </div>
 </div>
 </body>

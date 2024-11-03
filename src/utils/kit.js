@@ -2,7 +2,7 @@
 
 /**
  * 通用js方法封装处理
- * Copyright (c) 2019 kit
+ * Copyright (c) 2024 kit
  */
 
 // 日期格式化
@@ -10,10 +10,12 @@ export function parseTime(time, pattern) {
   if (arguments.length === 0 || !time) {
     return null
   }
-  const format = pattern || '{y}-{m}-{d} {h}:{i}:{s}'
-  let date
+  const format = pattern || '{y}-{m}-{d} {h}:{i}:{s}';
+  let date;
   if (typeof time === 'object') {
     date = time
+  } else if (time instanceof Date) {
+    date = time;
   } else {
     if ((typeof time === 'string') && (/^[0-9]+$/.test(time))) {
       time = parseInt(time)
@@ -33,16 +35,16 @@ export function parseTime(time, pattern) {
     i: date.getMinutes(),
     s: date.getSeconds(),
     a: date.getDay()
-  }
+  };
   const time_str = format.replace(/{(y|m|d|h|i|s|a)+}/g, (result, key) => {
-    let value = formatObj[key]
+    let value = formatObj[key];
     // Note: getDay() returns 0 on Sunday
     if (key === 'a') { return ['日', '一', '二', '三', '四', '五', '六'][value] }
     if (result.length > 0 && value < 10) {
       value = '0' + value
     }
     return value || 0
-  })
+  });
   return time_str
 }
 
@@ -79,7 +81,7 @@ export function selectDictLabel(datas, value) {
       actions.push(datas[key].label);
       return true;
     }
-  })
+  });
   if (actions.length === 0) {
     actions.push(value);
   }
@@ -104,11 +106,11 @@ export function selectDictLabels(datas, value, separator) {
         actions.push(datas[key].label + currentSeparator);
         match = true;
       }
-    })
+    });
     if (!match) {
       actions.push(temp[val] + currentSeparator);
     }
-  })
+  });
   return actions.join('').substring(0, actions.join('').length - 1);
 }
 
@@ -148,7 +150,7 @@ export function mergeRecursive(source, target) {
     }
   }
   return source;
-};
+}
 
 /**
  * 构造树型结构数据
@@ -206,7 +208,7 @@ export function handleTree(data, id, parentId, children) {
 * @param {*} params  参数
 */
 export function tansParams(params) {
-  let result = ''
+  let result = '';
   for (const propName of Object.keys(params)) {
     const value = params[propName];
     var part = encodeURIComponent(propName) + "=";

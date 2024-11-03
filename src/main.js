@@ -88,13 +88,13 @@ Vue.use(mavonEditor);
 
 Vue.use(Element, {
   size: Cookies.get('size') || 'medium' // set element-ui default size
-})
+});
 
-Vue.config.productionTip = false
+Vue.config.productionTip = false;
 
 new Vue({
   el: '#app',
   router,
   store,
   render: h => h(App)
-})
+});

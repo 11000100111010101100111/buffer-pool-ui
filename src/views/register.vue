@@ -41,7 +41,7 @@
         </el-input>
         <div class="register-code">
           <el-button @click="getCode" type="primary">发送验证码</el-button>
-          <!--          <img :src="codeUrl" @click="getCode" class="register-code-img"/>-->
+<!--                    <img :src="codeUrl" @click="getCode" class="register-code-img"/>-->
         </div>
       </el-form-item>
       <el-form-item style="width:100%;">
@@ -55,7 +55,7 @@
           <span v-if="!loading">注 册</span>
           <span v-else>注 册 中...</span>
         </el-button>
-        <div style="float: right;">
+        <div style="float: right; margin-top: 1rem">
           <router-link class="link-type unable-select-element" :to="'/login'">使用已有账户登录</router-link>
         </div>
       </el-form-item>
@@ -125,7 +125,7 @@
       };
     },
     created() {
-      this.getCode();
+
     },
     methods: {
       getCode() {

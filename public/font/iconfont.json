@@ -6,6 +6,55 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "119107",
+      "name": "转发",
+      "font_class": "zhuanfa",
+      "unicode": "e6c4",
+      "unicode_decimal": 59076
+    },
+    {
+      "icon_id": "947142",
+      "name": "搜索",
+      "font_class": "sousuo",
+      "unicode": "e6ac",
+      "unicode_decimal": 59052
+    },
+    {
+      "icon_id": "1287695",
+      "name": "设置",
+      "font_class": "shezhi",
+      "unicode": "e604",
+      "unicode_decimal": 58884
+    },
+    {
+      "icon_id": "4880023",
+      "name": "评论",
+      "font_class": "pinglun",
+      "unicode": "e612",
+      "unicode_decimal": 58898
+    },
+    {
+      "icon_id": "17605493",
+      "name": "喜欢",
+      "font_class": "xihuan",
+      "unicode": "e818",
+      "unicode_decimal": 59416
+    },
+    {
+      "icon_id": "19449176",
+      "name": "收藏",
+      "font_class": "shoucang",
+      "unicode": "e631",
+      "unicode_decimal": 58929
+    },
+    {
+      "icon_id": "22533636",
+      "name": "更多",
+      "font_class": "gengduo",
+      "unicode": "e62d",
+      "unicode_decimal": 58925
+    },
+    {
       "icon_id": "41358209",
       "name": "短视频",
       "font_class": "duanshipin",

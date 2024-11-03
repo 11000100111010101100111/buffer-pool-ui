@@ -367,7 +367,7 @@
               key: '10',
               type: 'url',
               value: "Access GitHub",
-              src: "https://github.com/11000100111010101100111/SmallQuestionNotes"
+              src: "https://github.com/11000100111010101100111/buffer-pool-service"
             }
           ],
           text2: [
@@ -612,7 +612,7 @@
         this.videoInfo.video = document.createElement('video');
         this.videoInfo.video.src = this.videoInfo.srcMatch + '_' + this.videoInfo.currentVideoIndex + '.mp4';//this.videoInfo.videoSrc[0].src;
         this.videoInfo.video.autoplay = true;
-        this.videoInfo.video.loop = false;
+        this.videoInfo.video.loop = true;
         this.videoInfo.video.muted = this.soundOpen;
         this.soundOpen = !this.soundOpen;
 

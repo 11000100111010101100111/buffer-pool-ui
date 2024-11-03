@@ -12,6 +12,24 @@
               p-id="4180" fill="#707070"></path>
           </svg>
         </el-button>
+        <el-button :class="['by-phone', {'disbaled': !support.phone}, {'by-phone-focus':init === 'phone'}]" circle
+                   @click="isPhone">
+          <svg t="1730523676192" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"
+               p-id="13244" width="200" height="200">
+            <path
+              d="M693.351 567.408v204.406H242.4V149.403h450.95v105.165h85.646V148.952c0-62.968-50.588-113.457-112.996-113.457H268.017c-61.937 0-112.999 50.796-112.999 113.457v737.419c0 62.967 50.592 113.457 112.999 113.457H666c61.935 0 112.996-50.797 112.996-113.457v-326.32h-66.167l-19.478 7.357zM467.008 944.941c-33.227 0-60.164-26.393-60.164-58.945 0-32.557 26.938-58.947 60.164-58.947s60.163 26.391 60.163 58.947c0 32.553-26.935 58.945-60.163 58.945z"
+              fill="#707070" p-id="13245"></path>
+            <path
+              d="M549.904 639.813c-6.99 0-13.524-2.973-17.927-8.156-4.68-5.508-6.556-12.816-5.283-20.58l5.289-32.269h-39.79c-12.024 0-24.198-0.97-29.381-12.551-1.02-2.277-2.288-5.111-2.288-19.118V267.478c0-12.028 0.97-24.204 12.559-29.383 2.276-1.018 5.109-2.283 19.109-2.283H914.41c14.006 0 16.839 1.268 19.115 2.286 11.583 5.177 12.553 17.353 12.553 29.38v279.661c0 12.023-0.97 24.196-12.55 29.38-2.257 1.014-5.095 2.289-19.118 2.289H722.829c-3.258 0-9.681 1.172-12.727 2.323l-150.533 56.861c-3.198 1.208-6.45 1.821-9.665 1.821z m-51.866-98.519h46.026c8.137 0 15.748 3.468 20.883 9.513s7.325 14.117 6.01 22.146l-3.606 22L696.84 546.04c7.282-2.751 18.21-4.746 25.989-4.746h185.735V273.325H498.038v267.969z"
+              fill="#707070" p-id="13246"></path>
+            <path
+              d="M648.004 481.496c-3.372-4.345-2.577-10.659 1.768-14.032l165.51-128.486c4.345-3.373 10.659-2.578 14.032 1.767l12.64 16.281c3.373 4.344 2.578 10.658-1.767 14.031L674.674 499.543c-4.345 3.373-10.659 2.578-14.031-1.767l-12.639-16.28z"
+              fill="#707070" p-id="13247"></path>
+            <path
+              d="M674.684 499.53c-4.345 3.373-10.659 2.578-14.031-1.767l-67.856-87.409c-3.372-4.344-2.577-10.658 1.768-14.031l16.278-12.638c4.345-3.373 10.659-2.578 14.031 1.767l67.856 87.409c3.372 4.345 2.577 10.659-1.768 14.032l-16.278 12.637z"
+              fill="#707070" p-id="13248"></path>
+          </svg>
+        </el-button>
         <el-button :class="['by-email', {'disbaled': !support.email}, {'by-email-focus':init === 'email'}]" circle
                    @click="isEmail">
           <svg t="1725919659153" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"
@@ -33,35 +51,35 @@
               fill="#A9294B" p-id="3088"></path>
           </svg>
         </el-button>
-        <el-button :class="['by-csdn', {'disbaled': !support.csdn}, {'by-csdn-focus': init === 'csdn'}]" circle
-                   @click="isCSDN">
-          <svg class="icon" aria-hidden="true">
-            <use xlink:href="#icon-csdn"></use>
-          </svg>
-        </el-button>
+        <!--        <el-button :class="['by-csdn', {'disbaled': !support.csdn}, {'by-csdn-focus': init === 'csdn'}]" circle-->
+        <!--                   @click="isCSDN">-->
+        <!--          <svg class="icon" aria-hidden="true">-->
+        <!--            <use xlink:href="#icon-csdn"></use>-->
+        <!--          </svg>-->
+        <!--        </el-button>-->
         <el-button :class="['by-github', {'disbaled': !support.github}, {'by-github-focus': init === 'github'}]" circle
                    @click="isGitHub">
           <svg class="icon" aria-hidden="true">
             <use xlink:href="#icon-github-fill"></use>
           </svg>
         </el-button>
-        <el-button :class="['by-google', {'disbaled': !support.google}, {'by-google-focus': init === 'google'}]" circle
-                   @click="isGoogle">
-          <svg class="icon" aria-hidden="true">
-            <use xlink:href="#icon-google"></use>
-          </svg>
-        </el-button>
-        <el-button :class="['by-wechat', {'disbaled': !support.wechat}, {'by-wechat-focus':init === 'wechat'}]" circle
-                   @click="isWeChat">
-          <svg class="icon" aria-hidden="true">
-            <use xlink:href="#icon-weixin"></use>
-          </svg>
-        </el-button>
+        <!--        <el-button :class="['by-google', {'disbaled': !support.google}, {'by-google-focus': init === 'google'}]" circle-->
+        <!--                   @click="isGoogle">-->
+        <!--          <svg class="icon" aria-hidden="true">-->
+        <!--            <use xlink:href="#icon-google"></use>-->
+        <!--          </svg>-->
+        <!--        </el-button>-->
+        <!--        <el-button :class="['by-wechat', {'disbaled': !support.wechat}, {'by-wechat-focus':init === 'wechat'}]" circle-->
+        <!--                   @click="isWeChat">-->
+        <!--          <svg class="icon" aria-hidden="true">-->
+        <!--            <use xlink:href="#icon-weixin"></use>-->
+        <!--          </svg>-->
+        <!--        </el-button>-->
       </el-row>
     </el-form-item>
     <el-form-item>
       <div style="float: right;">
-        <router-link class="link-type" :to="'../register'">我要注册</router-link>
+<!--        <router-link class="link-type" :to="'../register'">我要注册</router-link>-->
       </div>
     </el-form-item>
   </el-form>
@@ -81,9 +99,10 @@
         type: 'default',
         support: {
           'default': true,
+          'phone': true,
           'email': true,
-          'google': false,
-          'wechat': false,
+          // 'google': false,
+          // 'wechat': false,
           'github': false,
           'csdn': false
         }
@@ -113,6 +132,13 @@
           return;
         }
         this.updateValue('email');
+      },
+      isPhone() {
+        if (!this.support.phone) {
+          this.$message.info("使用手机验证码登陆的方式暂时未开放");
+          return;
+        }
+        this.updateValue('phone');
       },
       isGitHub() {
         if (!this.support.github) {
@@ -149,6 +175,9 @@
   }
 
   .by-email-focus {
+    box-shadow: 0 0 5px 0 #cc9876;
+  }
+  .by-phone-focus {
     box-shadow: 0 0 5px 0 #cc9876;
   }
 
